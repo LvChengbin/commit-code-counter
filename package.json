@@ -1,0 +1,69 @@
+{
+    "name": "@lvchengbin/git-contributions",
+    "version": "0.0.0",
+    "description": "Counting contributions of git repositories in different aspect.",
+    "keywords": [
+        "git",
+        "git-stats",
+        "contributions",
+        "code",
+        "commit",
+        "count",
+        "couter",
+        "counting",
+        "number",
+        "line",
+        "git",
+        "authors"
+    ],
+    "main": "dist/index.js",
+    "repository": "https://github.com/LvChengbin/git-contributions.git",
+    "author": "LvChengbin <lvchengbin59@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "make": "yarn clean && tsc --declaration",
+        "make:watch": "tsc --watch",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "lint": "eslint src/**/*.ts test/**/*.ts --fix",
+        "prepublish": "yarn lint && yarn test && yarn make"
+    },
+    "engines": {
+        "node": ">=14.15.0"
+    },
+    "publicConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.20",
+        "@types/node": "^14.14.20",
+        "@types/uuid": "^8.3.0",
+        "@types/yargs": "^15.0.12",
+        "@typescript-eslint/eslint-plugin": "^4.12.0",
+        "@typescript-eslint/parser": "^4.12.0",
+        "commitizen": "^4.2.2",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^7.17.0",
+        "husky": "next",
+        "jest": "^26.6.3",
+        "jest-extended": "^0.11.5",
+        "ts-jest": "^26.4.4",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.3",
+        "uuid": "^8.3.2"
+    },
+    "dependencies": {
+        "@ynn/eslint-plugin": "^0.0.1",
+        "dayjs": "^1.10.3",
+        "execa": "^5.0.0",
+        "simple-git": "^2.31.0",
+        "yargs": "^16.2.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    }
+}
