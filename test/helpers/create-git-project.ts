@@ -58,7 +58,10 @@ export default async function( options: CreateGitProjectOptions = {} ): Promise<
     await git.addConfig( 'user.name', author_name );
     await git.addConfig( 'user.email', author_email );
     /**
-     * while running `yarn test` by git `pre-commit` hook, environment variables will be passed to the spawned child process, so that `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL` variables will be used by the child git process and cause some undesired issues.
+     * while running `yarn test` by git `pre-commit` hook,
+     * environment variables will be passed to the spawned child process,
+     * so that `GIT_AUTHOR_NAME` and `GIT_AUTHOR_EMAIL` variables will be passed to the child git process,
+     * and git will use the variable directly rather than get information from .git/config file.
      */
     git.env( 'GIT_AUTHOR_NAME', GIT_AUTHOR_NAME );
     git.env( 'GIT_AUTHOR_EMAIL', GIT_AUTHOR_EMAIL );

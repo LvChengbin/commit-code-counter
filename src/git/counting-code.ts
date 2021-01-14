@@ -26,7 +26,7 @@ export interface CountingCodeOptions {
 export async function countingCode( git: SimpleGit, options: CountingCodeOptions = {} ): Promise<unknown> {
     options = {
         authors : [],
-        since : day().subtract( 1, 'yearn' ).format( 'YYYY-MM-DD' ),
+        since : day().subtract( 1, 'year' ).format( 'YYYY-MM-DD' ),
         before : day().add( 1, 'day' ).format( 'YYYY-MM-DD' ),
         ...options
     };
@@ -36,7 +36,7 @@ export async function countingCode( git: SimpleGit, options: CountingCodeOptions
         '--numstat'
     ];
 
-    if( options.authors.length ) {
+    if( options.authors?.length ) {
         options.authors.forEach( ( author: string ): void => {
             opts.push( `--author="${author}"` );
         } );
