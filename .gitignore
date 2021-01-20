@@ -101,3 +101,6 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# MacOS system file
+.DS_Store

@@ -7,7 +7,8 @@
  * Description:
  ******************************************************************/
 
-import { SimpleGit } from 'simple-git/promise';
+import { SimpleGit } from 'simple-git';
+import { DefaultLogFields } from 'simple-git/src/lib/tasks/log';
 import day from 'dayjs';
 
 export interface AuthorsOptions {
@@ -44,7 +45,7 @@ export interface Author {
  *
  * @return a Promise object resolves with the author list.
  */
-export async function authors( git: SimpleGit, options: Readonly<AuthorsOptions> = {} ): Promise<Author[]> {
+export default async function authors( git: Readonly<SimpleGit>, options: Readonly<AuthorsOptions> = {} ): Promise<Author[]> {
 
     options = {
         /**
@@ -64,7 +65,7 @@ export async function authors( git: SimpleGit, options: Readonly<AuthorsOptions>
         `--before=${options.before}`
     ] );
 
-    output.all.forEach( ( item ) => {
+    output.all.forEach( ( item: Readonly<DefaultLogFields> ) => {
         const { author_name, author_email } = item;
         const key = [ author_name, author_email ].join( '_###_' );
 

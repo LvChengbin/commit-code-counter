@@ -11,13 +11,14 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import { v1 as uuidv1 } from 'uuid';
+import { RequiredExcludesKeys } from '@ynn/utility-types';
 import { gitP, SimpleGit, SimpleGitOptions } from 'simple-git';
-import { GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL } from './constants';
+import { GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL, GIT_DEFAULT_FIRST_COMMIT_MESSAGE } from './constants';
 
 const prefix = 'git.contributes.';
-
-type Diff<T, U> = T extends U ? never : T;
-type RequiredExcludesKeys<T, U extends keyof T> = { [ P in Diff<keyof T, U> ]-?: NonNullable<T[ P ]> } & { [ P in U ]: T[ P ] };
+const fixturesPath = path.resolve( __dirname, '../fixtures' );
+const strayBirdsFileName = 'stray-birds.md';
+const strayBirdsPath = path.join( fixturesPath, strayBirdsFileName );
 
 interface CreateGitProjectOptions {
     projectName?: string;
@@ -25,20 +26,22 @@ interface CreateGitProjectOptions {
     author_name?: string;
     author_email?: string;
     simpleGitOptions?: SimpleGitOptions;
+    firstCommit?: boolean | string;
 }
 
-export default async function( options: CreateGitProjectOptions = {} ): Promise<{
+export default async function( options: Readonly<CreateGitProjectOptions> = {} ): Promise<{
     dir: string;
     author_name: string;
     author_email: string;
     git: SimpleGit;
+    firstFile: string;
 }> {
-
     const opts: RequiredExcludesKeys<CreateGitProjectOptions, 'simpleGitOptions'> = {
         dir : os.tmpdir(),
         projectName : prefix + uuidv1(),
         author_name : GIT_AUTHOR_NAME,
         author_email : GIT_AUTHOR_EMAIL,
+        firstCommit : true,
         ...options
     };
 
@@ -66,5 +69,20 @@ export default async function( options: CreateGitProjectOptions = {} ): Promise<
     git.env( 'GIT_AUTHOR_NAME', GIT_AUTHOR_NAME );
     git.env( 'GIT_AUTHOR_EMAIL', GIT_AUTHOR_EMAIL );
 
-    return { dir, author_name, author_email, git };
+    const firstFile = path.join( dir, strayBirdsFileName );
+
+    /**
+     * if the firstCommit is set, copy the file to the project directory and commit the change.
+     */
+    if( opts.firstCommit ) {
+        let commit: string = GIT_DEFAULT_FIRST_COMMIT_MESSAGE;
+        if( typeof opts.firstCommit === 'string' ) {
+            commit = opts.firstCommit;
+        }
+        fs.copyFileSync( strayBirdsPath, firstFile );
+        await git.add( './*' );
+        await git.commit( commit );
+    }
+
+    return { dir, author_name, author_email, git, firstFile };
 }

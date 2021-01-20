@@ -6,7 +6,7 @@
  * Time: 01/13/2021
  * Description:
  ******************************************************************/
-import { SimpleGit } from 'simple-git/promise';
+import { SimpleGit } from 'simple-git';
 export interface AuthorsOptions {
     since?: string;
     before?: string;
@@ -39,4 +39,4 @@ export interface Author {
  *
  * @return a Promise object resolves with the author list.
  */
-export declare function authors(git: SimpleGit, options?: Readonly<AuthorsOptions>): Promise<Author[]>;
+export default function authors(git: Readonly<SimpleGit>, options?: Readonly<AuthorsOptions>): Promise<Author[]>;

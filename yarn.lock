@@ -436,6 +436,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/eslintrc@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@eslint/eslintrc@npm:0.3.0"
+  dependencies:
+    ajv: ^6.12.4
+    debug: ^4.1.1
+    espree: ^7.3.0
+    globals: ^12.1.0
+    ignore: ^4.0.6
+    import-fresh: ^3.2.1
+    js-yaml: ^3.13.1
+    lodash: ^4.17.20
+    minimatch: ^3.0.4
+    strip-json-comments: ^3.1.1
+  checksum: 00e87c194672eb85dcea22ba749fb3cabdd9768e952e748b2c727940f06691c873369d75cf3bddb239301eca8c38de6e098b0de4839fa7c16a2062e536e8ff5a
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -716,20 +734,24 @@ __metadata:
   resolution: "@lvchengbin/git-contributions@workspace:."
   dependencies:
     "@types/jest": ^26.0.20
+    "@types/minimatch": ^3.0.3
     "@types/node": ^14.14.20
     "@types/uuid": ^8.3.0
     "@types/yargs": ^15.0.12
     "@typescript-eslint/eslint-plugin": ^4.12.0
     "@typescript-eslint/parser": ^4.12.0
-    "@ynn/eslint-plugin": ^0.0.1
+    "@ynn/eslint-plugin": ^0.0.3
+    "@ynn/utility-types": ^0.0.1
     commitizen: ^4.2.2
     cz-conventional-changelog: ^3.3.0
     dayjs: ^1.10.3
     eslint: ^7.17.0
+    eslint_d: ^9.1.2
     execa: ^5.0.0
     husky: next
     jest: ^26.6.3
     jest-extended: ^0.11.5
+    minimatch: ^3.0.4
     simple-git: ^2.31.0
     ts-jest: ^26.4.4
     ts-node: ^9.1.1
@@ -883,6 +905,13 @@ __metadata:
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
   checksum: 820cabe35ac915b93e38b0c01957e5c49d7d9f69251dddfbf39af0ff4fe24f6e08b39e55603e0d212dea7bcaa383b1218b58a738d1c02013dc22df06547ff238
+  languageName: node
+  linkType: hard
+
+"@types/minimatch@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@types/minimatch@npm:3.0.3"
+  checksum: 672ccdac197e8176eed1a9441d0caf8a29a90eb139b1cefdd4c9e71b1c48f5c749f5d101a2d85da15c6259214ebda95072835021407d60330a731a2672964b82
   languageName: node
   linkType: hard
 
@@ -1060,12 +1089,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ynn/eslint-plugin@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "@ynn/eslint-plugin@npm:0.0.1"
+"@ynn/eslint-plugin@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@ynn/eslint-plugin@npm:0.0.3"
   dependencies:
     find-up: ^5.0.0
-  checksum: 1480799795cb4a32296e0fcc6463b2ebfe1375f391c7b2a40f48b5ca0183fc4e286cd07fb939321290b57e5496c69f80357147a8c9081753ac1f09f2ed4afa63
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": "*"
+    "@typescript-eslint/parser": "*"
+    eslint: "*"
+  checksum: 02b5b76bffca225de3076a78d831bab1c96b85b7489d3c6b4e843aff9ab4e5201828266f4a7070fa9bcbd38214ee25093fafaafd741ca91549ad8d2a1afe7ee9
+  languageName: node
+  linkType: hard
+
+"@ynn/utility-types@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@ynn/utility-types@npm:0.0.1"
+  checksum: 56e1b8dec621f34fa99a042b408646535e2b06686e82f8a086e4e21db06147fa1802c38f51f445d6318d0c3baf1991f641348a5a032986e388f12b59afaaaf57
   languageName: node
   linkType: hard
 
@@ -1852,6 +1892,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core_d@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "core_d@npm:2.0.0"
+  dependencies:
+    supports-color: ^5.5.0
+  checksum: 1b623bb129b5750211f0c84c7b0c801d5ac7d570803e337c1d0d05fecb728b4449cc01ebfb0ea530c37152a52cead6c3390e12ad8d74cbd71e6337e76c1adda6
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^7.0.0":
   version: 7.0.0
   resolution: "cosmiconfig@npm:7.0.0"
@@ -2325,6 +2374,67 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: 12b09a972eb0b81fabf9c1b38b3e9ada0cc051a22ee5022e31852e7babde6fe02a0135be3027451ee02c9ff4a6f738b55205d2953f98eb16a43350ad73070b27
+  languageName: node
+  linkType: hard
+
+"eslint@npm:^7.3.0":
+  version: 7.18.0
+  resolution: "eslint@npm:7.18.0"
+  dependencies:
+    "@babel/code-frame": ^7.0.0
+    "@eslint/eslintrc": ^0.3.0
+    ajv: ^6.10.0
+    chalk: ^4.0.0
+    cross-spawn: ^7.0.2
+    debug: ^4.0.1
+    doctrine: ^3.0.0
+    enquirer: ^2.3.5
+    eslint-scope: ^5.1.1
+    eslint-utils: ^2.1.0
+    eslint-visitor-keys: ^2.0.0
+    espree: ^7.3.1
+    esquery: ^1.2.0
+    esutils: ^2.0.2
+    file-entry-cache: ^6.0.0
+    functional-red-black-tree: ^1.0.1
+    glob-parent: ^5.0.0
+    globals: ^12.1.0
+    ignore: ^4.0.6
+    import-fresh: ^3.0.0
+    imurmurhash: ^0.1.4
+    is-glob: ^4.0.0
+    js-yaml: ^3.13.1
+    json-stable-stringify-without-jsonify: ^1.0.1
+    levn: ^0.4.1
+    lodash: ^4.17.20
+    minimatch: ^3.0.4
+    natural-compare: ^1.4.0
+    optionator: ^0.9.1
+    progress: ^2.0.0
+    regexpp: ^3.1.0
+    semver: ^7.2.1
+    strip-ansi: ^6.0.0
+    strip-json-comments: ^3.1.0
+    table: ^6.0.4
+    text-table: ^0.2.0
+    v8-compile-cache: ^2.0.3
+  bin:
+    eslint: bin/eslint.js
+  checksum: 5c6f6ca0eb6c3738a0d14d3441a23f045ef9e7f73aaba4848aea0877c5fd50ec42937ccdaf53fb9107694f5700a9989bca55334b7b17e5d3be2f6e69a42241fa
+  languageName: node
+  linkType: hard
+
+"eslint_d@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "eslint_d@npm:9.1.2"
+  dependencies:
+    core_d: ^2.0.0
+    eslint: ^7.3.0
+    nanolru: ^1.0.0
+    optionator: ^0.9.1
+  bin:
+    eslint_d: bin/eslint_d.js
+  checksum: 2ad5f7caeb96bf4748c27e72581b86aee01d33fa499648d0d1fc8aeb783180a206b7be3b353e5a4791808ebb19e5097f5d2dd21432395275fb889a8b90c7a5e5
   languageName: node
   linkType: hard
 
@@ -4610,6 +4720,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"nanolru@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "nanolru@npm:1.0.0"
+  checksum: 3e9d4407a7c5c8c29867cee33aec8ea60b300be34ecc858f4613cfa95bc0fff9af6a2a462737d7e2dc829414d1281263fdd6c1c7a844ef5d1c5cc77a1ddba17e
+  languageName: node
+  linkType: hard
+
 "nanomatch@npm:^1.2.9":
   version: 1.2.13
   resolution: "nanomatch@npm:1.2.13"
@@ -5969,7 +6086,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^5.3.0":
+"supports-color@npm:^5.3.0, supports-color@npm:^5.5.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
   dependencies:

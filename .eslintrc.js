@@ -11,6 +11,7 @@ module.exports = {
     plugins : [ '@ynn' ],
     extends : [ 'plugin:@ynn/recommended' ],
     root : true,
+    ignorePatterns : [ '.yarn' ],
     rules : {
         '@typescript-eslint/naming-convention' : 'off'
     }
